@@ -32,10 +32,10 @@ const MainPage = () => {
 		<section className="main-page__layout">
 			<article className="main-page__user-input">
 				<Form onFinish={onFinish}>
-					<Form.Item rules={{ required: true, message: 'Username is required' }}>
+					<Form.Item name="username" rules={[{ required: true, message: 'Username is required' }]}>
 						<Input value={username} onChange={onChangeUsername} placeholder="Input username here" />
-						<Button type="primary" htmlType="submit" className="search-btn">Search</Button>
 					</Form.Item>
+					<Button type="primary" htmlType="submit" className="search-btn">Search</Button>
 				</Form>
 			</article>
 			<section className="main-page__list-container">
