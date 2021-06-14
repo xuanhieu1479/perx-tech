@@ -1,0 +1,23 @@
+.main-page__layout {
+  padding: 15px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-page__user-input {
+  margin-bottom: 15px;
+  width: 300px;
+
+  .search-btn {
+    margin-top: 10px;
+    width: 100%;
+  }
+}
+
+.main-page__list-container {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  min-width: 80vw;
+}
