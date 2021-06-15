@@ -28,7 +28,7 @@ const getUserRepoAndOrg = async (dispatch, username) => {
 		await getUserRepositories(dispatch, username);
 		await getUserOrganizations(dispatch, username);
 		openNotification({
-			message: 'Success',
+			message: 'Search success',
 			type: 'success',
 		})
 	} catch (error) {
