@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Form, AutoComplete, Button } from 'antd';
-import { getUserRepositories, getUserOrganizations, searchUser } from '../../redux/user/action';
+import { getUserRepoAndOrg, searchUser } from '../../redux/user/action';
 import ListContainer from '../List/ListContainer';
 import './style.scss';
 
@@ -31,8 +31,7 @@ const MainPage = () => {
 	const onSelectUser = () => formRef.current.submit();
 
 	const onFinish = () => {
-		getUserRepositories(dispatch, username);
-		getUserOrganizations(dispatch, username);
+		getUserRepoAndOrg(dispatch, username);
 	}
 
 	const getRepoData = () => repos.map(repo => ({
