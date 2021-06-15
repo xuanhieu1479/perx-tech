@@ -6,6 +6,7 @@ import ListContainer from '../List/ListContainer';
 import './style.scss';
 
 const AT_LEAST_CHARS = 2;
+const DEBOUNCE_INTERVAL = 300; // milliseconds
 
 const MainPage = () => {
 	const dispatch = useDispatch();
@@ -13,17 +14,22 @@ const MainPage = () => {
 	const orgs = useSelector(state => state.user.org);
 	const [users, setUsers] = useState([]);
 	const [username, setUsername] = useState()
+	const [fetchTimeout, setFetchTimeout] = useState();
 
 	const formRef = useRef();
 
 	const onChangeUsername = (value) => setUsername(value);
-	const onSearchUser = async (value) => {
+	const onSearchUser = (value) => {
 		if (value.length >= AT_LEAST_CHARS) {
-			const data = await searchUser(value);
-			setUsers(data.items.map(u => ({
-				label: u.login,
-				value: u.login,
-			})));
+			clearTimeout(fetchTimeout);
+			const timeout = setTimeout(async () => {
+				const data = await searchUser(value);
+				setUsers(data.items.map(u => ({
+					label: u.login,
+					value: u.login,
+				})));
+			}, DEBOUNCE_INTERVAL);
+			setFetchTimeout(timeout);
 		} else {
 			setUsers([]);
 		}
