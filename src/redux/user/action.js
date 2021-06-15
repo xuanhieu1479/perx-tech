@@ -22,4 +22,10 @@ const getUserOrganizations = async (dispatch, username) => {
 	}
 }
 
-export { getUserRepositories, getUserOrganizations };
+const searchUser = async (username) => {
+	const limit = 100;
+	const { data } = await axios.get(`search/users?per_page=${limit}&q=${username}`);
+	return data;
+}
+
+export { getUserRepositories, getUserOrganizations, searchUser };
